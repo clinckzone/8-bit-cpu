@@ -109,7 +109,7 @@ module cpu(
 		.clk(clk),
 		.reset(reset),
 		.write_enable(output_write_enable),
-		.value(reg_write_value),
+		.value(rd),
 		.out(out)
 	);
 

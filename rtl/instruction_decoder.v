@@ -12,7 +12,7 @@ module instruction_decoder (
 		rd_addr  = instruction[11:10]; // Destination
 		rs_addr  = instruction[9:8];   // Source
 		imm = instruction[7:0];
-		jmp_addr = instruction[11:4];
+		jmp_addr = instruction[7:0];
 	end
 
 endmodule
