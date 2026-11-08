@@ -12,11 +12,20 @@ A simple 8-bit CPU written in Verilog, built for practice.
 ## Instruction format
 
 ```
-[15:12] opcode | [11:10] rd | [9:8] rs | [7:0] imm
+[15:12] opcode | [11:10] rd | [9:8] rs | [7:0] imm / jump address
 ```
-
-Jumps use bits `[11:4]` as the target address.
 
 ## Layout
 
-All source files live in `rtl/`. The top-level module is `cpu.v`.
+- `rtl/` – CPU source, top module is `cpu.v`
+- `test/` – testbench and `program.hex` (the program to run)
+
+## Running
+
+Needs [Icarus Verilog](https://steveicarus.github.io/iverilog/) and [GTKWave](https://gtkwave.sourceforge.net/).
+
+```
+make          # compile, simulate, open GTKWave
+make sim      # compile and simulate only
+make clean    # remove build files
+```
