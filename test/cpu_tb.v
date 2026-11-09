@@ -28,7 +28,7 @@ module cpu_tb();
         repeat (2) #5;
         reset = 1'b0;        
         
-        repeat (30) #5; 
+        repeat (200) #5; 
         $finish;
     end
 

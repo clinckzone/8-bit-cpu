@@ -43,10 +43,11 @@ module control_unit (
 	end	
 
 	always @(*) begin
-		reset_control_signals();
 
 		case (state)
 			FETCH: begin
+				reset_control_signals();
+				
 				ir_write_enable = 1;
 				next_state = DECODE;
 			end
@@ -96,16 +97,23 @@ module control_unit (
 			EXECUTE: begin
 				case (opcode)
 					// LOAD and ALU
-					4'b0000, 4'b0001, 4'b0010, 4'b0011, 4'b0100, 4'b0101, 4'b0110: begin
-						reg_write_enable = 1'b1;
+					4'b0000: begin
+						reg_write_enable = 1;
+						pc_write_enable = 1;
+						next_state = FETCH;						
+					end
+					
+					4'b0001, 4'b0010, 4'b0011, 4'b0100, 4'b0101, 4'b0110: begin
+						status_write_enable = 1;
+						reg_write_enable = 1;
 						pc_write_enable = 1;
 						next_state = FETCH;
 					end
 					
 					// OUT
 					4'b1001: begin	
+						pc_write_enable = 1;
 						output_write_enable = 1;
-						status_write_enable = 1;
 						next_state = FETCH;
 					end
 
